@@ -2,7 +2,7 @@
   "name": "ownide",
   "productName": "ownide",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Modern IDE for many languages!",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -13,8 +13,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "FreshVlay",
-    "email": "jonas.kassl@bkf.at"
+    "name": "MCTFresh"
   },
   "license": "MIT",
   "config": {
@@ -45,7 +44,8 @@
     }
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
