@@ -3,18 +3,27 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+}
+
+.right {
+  position: absolute;
+  left: 41%;
+  width: 59%;
+  height: 100%;
+  top: 0%;
   background-color: #263238;
+}
+
+.left {
+  position: absolute;
+  left: 0%;
+  width: 41%;
+  height: 100%;
+  top: 0%;
+  background-color: #32424A;
 }
 
 .title {
   color: white;
   text-align: right;
 }
-.vertical { 
-  border-left: 1px solid white;
-  height: 705px; 
-  position: absolute; 
-  top: -9em;
-  left: 40%; 
-  
-} 
