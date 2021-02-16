@@ -23,7 +23,18 @@ body {
   background-color: #32424A;
 }
 
+.logo {
+  position: absolute;
+  left: 38.5%;
+  bottom: 80%;
+  width: 20%;
+  height: auto;
+}
+
 .title {
   color: white;
-  text-align: right;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  bottom: 70%;
+  left: 37%;
 }
