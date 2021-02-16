@@ -1,82 +1,62 @@
-const git = require('isomorphic-git');
-const fs = require('fs');
-const http = require('http');
+let shell = require('shelljs');
 
-async function createRepo(path){
-    return await git.init({fs, dir: path});
+let workingDirectory = '.';
+
+function init(){
+    shell.exec("git init");
 }
 
-async function clone(path, url, githubToken){
-    return await git.clone({
-        fs,
-        http,
-        dir: path,
-        url: url,
-        singleBranch: true,
-        onAuth: () => ({ username: githubToken })
-    })
+function clone(url){
+    shell.exec("git clone " + url)
 }
 
-async function add(repoPath, file){
-    return await git.add({fs, dir: repoPath, filepath: file});
+function add(file){
+    shell.exec("git add " + file)
 }
 
-async function remove(repoPath, file){
-    return await git.remove({fs, dir: repoPath, filepath: file});
+function remove(file){
+    shell.exec("git remove " + file)
 }
 
-async function commit(repoPath, authorName, authorEmail, message){
-    let sha = await git.commit({
-        fs,
-        dir: repoPath,
-        author: {
-            name: authorName,
-            email: authorEmail
-        },
-        message: message
-    });
-    return sha;
+function commit(message){
+    shell.exec("git commit -m \"" + message + "\"")
 }
 
-async function addRemote(repoPath, remoteName, remoteURL){
-    return await git.addRemote({fs, dir: repoPath, remote: remoteName, url: remoteURL})
+function addRemote(name, url){
+    shell.exec("git remote add " + name + " " + url)
 }
 
-async function removeRemote(repoPath, remoteName){
-    return await git.deleteRemote({fs, dir: repoPath, remote: remoteName})
+function removeRemote(name){
+    shell.exec("git remote remove " + name)
 }
 
-async function createBranch(repoPath, name){
-    return await git.branch({fs, dir: repoPath, ref: name})
+function renameBranch(newName){
+    shell.exec("git branch -M " + newName)
 }
 
-async function deleteBranch(repoPath, name){
-    return await git.deleteBranch({fs, dir: repoPath, ref: name})
+function push(remote, localBranch){
+    shell.exec("git push -u " + remote + " " + localBranch)
 }
 
-async function renameBranch(repoPath, newName, oldName){
-    return await git.renameBranch({fs, dir: repoPath, ref: newName, oldref: oldName})
+function pull(remote, localBranch){
+    shell.exec("git pull " + remote  + " " + localBranch)
 }
 
-async function push(repoPath, remote, ref, githubToken){
-    return await git.push({
-        fs,
-        http,
-        dir: repoPath,
-        remote: remote,
-        ref: ref,
-        onAuth: () => ({ username: githubToken })
-    });
+function checkEnv(){
+    if(!shell.which("git") || !shell.which("node")){
+        return false;
+    }else {
+        return true;
+    }
 }
 
-async function pull(repoPath, branch){
-    return await git.pull({
-        fs,
-        http,
-        dir: repoPath,
-        ref: branch,
-        singleBranch: true
-    })
+function initEnv(){
+    shell.config.execPath = shell.which("node").toString();
 }
 
-module.exports = {createRepo, clone, add, remove, commit, addRemote, removeRemote, createBranch, deleteBranch, renameBranch, push, pull}
+function setCurrentWorkingDirectory(path){
+    workingDirectory = path;
+    shell.cd(workingDirectory);
+}
+
+module.exports = {init, clone, add, remove, commit, addRemote, removeRemote, renameBranch, push, pull, checkEnv, initEnv, setCurrentWorkingDirectory};
