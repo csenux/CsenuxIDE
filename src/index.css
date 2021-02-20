@@ -3,6 +3,7 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+  height: 100%;
 }
 
 .right {
@@ -25,10 +26,11 @@ body {
 
 .logo {
   position: absolute;
-  left: 38.5%;
+  left: 39%;
   bottom: 80%;
   width: 20%;
   height: auto;
+  margin: auto;
 }
 
 .title {
@@ -36,5 +38,23 @@ body {
   font-family: 'Roboto', sans-serif;
   position: absolute;
   bottom: 70%;
-  left: 37%;
+  left: 33%;
+  text-align: center;
 }
+
+.btngroup {
+  border: none;
+  outline: none;
+  background: inherit;
+  color: white;
+  display: block;
+  padding: 2%;
+  
+}
+
+.btngroup2 {
+  padding-top: 40%;
+}
+
+/* On mouse-over */
+.btngroup:hover {color: darkcyan;}
